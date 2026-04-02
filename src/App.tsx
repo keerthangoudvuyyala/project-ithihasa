@@ -443,7 +443,7 @@ const LandingPage = ({ novel, chapters }: { novel: any, chapters: any[] }) => {
               New Reality Detected
             </div>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-none uppercase">
-              {novel.title.split(' ').map((word: string, i: number) => (
+              {(novel?.title || 'Project ITHIHASA').split(' ').map((word: string, i: number) => (
                 <span key={i} className={i % 2 === 1 ? 'text-system-blue system-text-glow italic' : ''}>
                   {word}{' '}
                   {i === 1 && <br />}
