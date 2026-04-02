@@ -204,7 +204,10 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
       }));
       setChapters(fetchedChapters);
       setLoading(false);
-    }, (error) => handleFirestoreError(error, OperationType.LIST, 'chapters'));
+    }, (error) => {
+      handleFirestoreError(error, OperationType.LIST, 'chapters');
+      setLoading(false); // <--- This fixes the infinite spin bug!
+    });
 
     return () => {
       unsubscribeNovel();
