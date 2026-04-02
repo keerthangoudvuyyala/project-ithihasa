@@ -1,0 +1,39 @@
+{
+  "novel": {
+    "title": "Project ITHIHASA",
+    "author": "System Admin",
+    "synopsis": "In a world where the laws of physics have been rewritten by the 'System', one man discovers the hidden truth behind the ruined reality.",
+    "coverUrl": "https://picsum.photos/seed/ithihasa/800/1200",
+    "stats": {
+      "chapters": 12,
+      "views": "1.2M",
+      "rating": "4.9"
+    }
+  },
+  "chapters": [
+    {
+      "id": "1",
+      "title": "The First Way",
+      "content": "There are three ways to survive in a ruined world. Now, I have forgotten a few, but one thing is certain. The fact that you who are reading this will survive. \n\nThis is a story about a world that has come to an end. A world where the 'System' has taken over every aspect of human life. \n\nI looked up at the sky. It wasn't blue anymore. It was a digital void, filled with scrolling lines of code that only I could see.",
+      "wordCount": 1240,
+      "status": "published",
+      "lastUpdated": "2026-03-15T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "title": "The Second Way",
+      "content": "The second way is simpler, yet far more dangerous. It involves embracing the very thing that destroyed us. \n\nI felt the cold metal of the interface against my temple. 'Link Start,' I whispered. \n\nThe world dissolved into a flurry of pixels. The pain was sharp, but the clarity was worth it. I was no longer just a man; I was a node in the network.",
+      "wordCount": 1150,
+      "status": "published",
+      "lastUpdated": "2026-03-20T14:30:00Z"
+    },
+    {
+      "id": "3",
+      "title": "The Ruined Reality",
+      "content": "Drafting the third way... The reality we knew is gone. What remains is a shadow, a simulation running on a dying star.",
+      "wordCount": 45,
+      "status": "draft",
+      "lastUpdated": "2026-04-01T09:00:00Z"
+    }
+  ]
+}

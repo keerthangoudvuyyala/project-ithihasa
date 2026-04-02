@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&family=Fira+Code:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Merriweather", ui-serif, Georgia, serif;
+  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, monospace;
+
+  --color-space-navy: #0B0E14;
+  --color-system-blue: #40E0D0;
+  --color-system-white: #E0E0E0;
+  --color-system-border: rgba(255, 255, 255, 0.1);
+
+  --shadow-glow: 0 0 15px rgba(64, 224, 208, 0.3);
+}
+
+@layer base {
+  body {
+    @apply bg-space-navy text-system-white font-sans antialiased;
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(64, 224, 208, 0.05) 0%, transparent 50%),
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+  }
+}
+
+@utility system-border {
+  @apply border border-system-border relative;
+}
+
+@layer components {
+  .system-border::before,
+  .system-border::after,
+  .system-box::before,
+  .system-box::after {
+    content: '';
+    @apply absolute w-1 h-1 bg-system-blue opacity-50;
+  }
+
+  .system-border::before, .system-box::before { @apply top-0 left-0; }
+  .system-border::after, .system-box::after { @apply bottom-0 right-0; }
+
+  .system-box {
+    @apply system-border bg-black/40 backdrop-blur-sm p-4;
+  }
+
+  .system-btn {
+    @apply px-4 py-2 border border-system-blue/50 bg-system-blue/5 text-system-blue 
+           hover:bg-system-blue hover:text-space-navy transition-all duration-300
+           font-mono text-sm uppercase tracking-wider;
+  }
+
+  .system-text-glow {
+    text-shadow: 0 0 8px rgba(64, 224, 208, 0.5);
+  }
+
+  /* Tiptap Prose Styles */
+  .prose {
+    @apply space-y-6;
+  }
+  .prose p {
+    @apply leading-loose;
+  }
+  .prose h1 {
+    @apply text-3xl font-bold tracking-tight mb-8;
+  }
+  .prose h2 {
+    @apply text-2xl font-bold tracking-tight mb-6;
+  }
+  .prose blockquote {
+    @apply border-l-4 border-system-blue/40 pl-6 italic opacity-80;
+  }
+  .prose ul {
+    @apply list-disc list-inside space-y-2;
+  }
+  .prose ol {
+    @apply list-decimal list-inside space-y-2;
+  }
+  .prose code {
+    @apply bg-system-blue/10 text-system-blue px-1.5 py-0.5 rounded font-mono text-sm;
+  }
+  .prose hr {
+    @apply border-system-border my-12;
+  }
+  .prose .ProseMirror-placeholder::before {
+    @apply text-system-white/20 content-[attr(data-placeholder)] float-left h-0 pointer-events-none;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-space-navy;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-system-blue/20 hover:bg-system-blue/40 transition-colors;
+}

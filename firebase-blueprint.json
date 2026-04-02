@@ -1,0 +1,128 @@
+{
+  "entities": {
+    "Novel": {
+      "title": "Novel Metadata",
+      "description": "Singleton document containing novel-wide settings and stats.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "author": { "type": "string" },
+        "synopsis": { "type": "string" },
+        "coverUrl": { "type": "string" },
+        "views": { "type": "number" },
+        "rating": { "type": "number" },
+        "ratingCount": { "type": "number" },
+        "volumes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "imageUrl": { "type": "string" }
+            }
+          }
+        }
+      },
+      "required": ["title", "synopsis"]
+    },
+    "Chapter": {
+      "title": "Novel Chapter",
+      "description": "A single chapter or fragment of the novel.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "wordCount": { "type": "number" },
+        "status": { "type": "string", "enum": ["draft", "published"] },
+        "volumeId": { "type": "number" },
+        "likes": { "type": "number" },
+        "lastUpdated": { "type": "string", "format": "date-time" },
+        "order": { "type": "number" }
+      },
+      "required": ["title", "content", "status", "volumeId"]
+    },
+    "Comment": {
+      "title": "Chapter Comment",
+      "description": "A user transmission/comment on a specific chapter.",
+      "type": "object",
+      "properties": {
+        "chapterId": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "text": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["chapterId", "userId", "text"]
+    },
+    "Like": {
+      "title": "Chapter Like",
+      "description": "Tracks a user's like on a chapter.",
+      "type": "object",
+      "properties": {
+        "chapterId": { "type": "string" },
+        "userId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["chapterId", "userId"]
+    },
+    "WorldElement": {
+      "title": "World Board Element",
+      "description": "An element on the interactive world drawing board.",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["image", "text", "line"] },
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "width": { "type": "number" },
+        "height": { "type": "number" },
+        "text": { "type": "string" },
+        "points": { "type": "array", "items": { "type": "number" } },
+        "src": { "type": "string" },
+        "color": { "type": "string" },
+        "fontSize": { "type": "number" },
+        "userId": { "type": "string" }
+      },
+      "required": ["type", "x", "y"]
+    },
+    "User": {
+      "title": "User Profile",
+      "description": "Information about a system user.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "user"] }
+      },
+      "required": ["uid", "email"]
+    }
+  },
+  "firestore": {
+    "/novels/ithihasa": {
+      "schema": "Novel",
+      "description": "The main novel metadata."
+    },
+    "/chapters/{chapterId}": {
+      "schema": "Chapter",
+      "description": "Collection of all chapters."
+    },
+    "/chapters/{chapterId}/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Comments for a specific chapter."
+    },
+    "/likes/{likeId}": {
+      "schema": "Like",
+      "description": "Global collection of likes."
+    },
+    "/world_elements/{elementId}": {
+      "schema": "WorldElement",
+      "description": "Elements on the world board."
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles."
+    }
+  }
+}
